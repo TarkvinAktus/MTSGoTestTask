@@ -139,7 +139,7 @@ func main() {
 		w.Header().Set("Content-type", "application/json")
 		w.WriteHeader(http.StatusOK)
 
-		if err1 := server.ServeRequest(serverCodec); err1 != nil {
+		if err := server.ServeRequest(serverCodec); err != nil {
 			http.Error(w, "Error while serving JSON request", http.StatusInternalServerError)
 			return
 
