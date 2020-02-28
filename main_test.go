@@ -16,15 +16,20 @@ func TestCreateUser(t *testing.T) {
 	var user User
 	var err error
 
+	//Get configs
+	conf, err := GetConfig()
+	if err != nil {
+		panic(err)
+	}
+
 	//DB
-	connStr := "user=postgres password=root dbname=users sslmode=disable"
-	DBConn, err = sql.Open("postgres", connStr)
+	DBConn, err = sql.Open("postgres", conf.DBConnectionString)
 	if err != nil {
 		t.Error("DB connection error")
 	}
 	defer DBConn.Close()
 
-	//args for user.create
+	//Args for user.create
 	userArgs.ID = 1
 	userArgs.Login = testLogin
 
@@ -48,9 +53,14 @@ func TestGetUser(t *testing.T) {
 	var user User
 	var err error
 
+	//Get configs
+	conf, err := GetConfig()
+	if err != nil {
+		panic(err)
+	}
+
 	//DB
-	connStr := "user=postgres password=root dbname=users sslmode=disable"
-	DBConn, err = sql.Open("postgres", connStr)
+	DBConn, err = sql.Open("postgres", conf.DBConnectionString)
 	if err != nil {
 		t.Error("DB connection error")
 	}
@@ -93,9 +103,14 @@ func TestUpdateUser(t *testing.T) {
 	var user User
 	var err error
 
+	//Get configs
+	conf, err := GetConfig()
+	if err != nil {
+		panic(err)
+	}
+
 	//DB
-	connStr := "user=postgres password=root dbname=users sslmode=disable"
-	DBConn, err = sql.Open("postgres", connStr)
+	DBConn, err = sql.Open("postgres", conf.DBConnectionString)
 	if err != nil {
 		t.Error("DB connection error")
 	}
